@@ -943,12 +943,21 @@ namespace TwitchLeecher.Services.Services
             log(Environment.NewLine + Environment.NewLine + "Parallel video chunk download is running...");
 
             long completedPartDownloads = 0;
+            long muteCount = 0;
+            long muteRecoveryFail = 0;
 
             Parallel.ForEach(vodPlaylist, new ParallelOptions() { MaxDegreeOfParallelism = maxConnectionCount - 1 }, (part, loopState) =>
             {
                 int retryCounter = 0;
 
                 bool success = false;
+                bool isMuted = part.RemoteFile.Contains("-muted");
+                bool muteFail = false;
+
+                if (isMuted) {
+                    muteCount ++;
+                }
+                string remoteFile = part.RemoteFile;
 
                 do
                 {
@@ -956,7 +965,9 @@ namespace TwitchLeecher.Services.Services
                     {
                         using (WebClient downloadClient = new WebClient())
                         {
-                            byte[] bytes = downloadClient.DownloadData(part.RemoteFile);
+                            remoteFile = (!muteFail & isMuted) ? part.RemoteFile.Replace("-muted", "") : part.RemoteFile;
+                            
+                            byte[] bytes = downloadClient.DownloadData(remoteFile);
 
                             Interlocked.Increment(ref completedPartDownloads);
 
@@ -973,16 +984,25 @@ namespace TwitchLeecher.Services.Services
                     }
                     catch (WebException ex)
                     {
-                        if (retryCounter < DOWNLOAD_RETRIES)
-                        {
+                        if (retryCounter < DOWNLOAD_RETRIES) {
                             retryCounter++;
-                            log(Environment.NewLine + Environment.NewLine + "Downloading file '" + part.RemoteFile + "' failed! Trying again in " + DOWNLOAD_RETRY_TIME + "s");
-                            log(Environment.NewLine + ex.ToString());
-                            Thread.Sleep(DOWNLOAD_RETRY_TIME * 1000);
+
+                            if (!muteFail & isMuted) {
+                                muteRecoveryFail++;
+                                log(Environment.NewLine + Environment.NewLine + "Downloading unmuted file '" + remoteFile + "' failed! Retry immediately with muted files");
+                            } else {
+                                log(Environment.NewLine + Environment.NewLine + "Downloading file '" + remoteFile + "' failed! Trying again in " + DOWNLOAD_RETRY_TIME + "s");
+                                log(Environment.NewLine + ex.ToString());
+                                Thread.Sleep(DOWNLOAD_RETRY_TIME * 1000);
+                            }
+
+                            if (!muteFail) {
+                                muteFail = true;
+                            }
                         }
                         else
                         {
-                            throw new ApplicationException("Could not download file '" + part.RemoteFile + "' after " + DOWNLOAD_RETRIES + " retries!");
+                            throw new ApplicationException("Could not download file '" + remoteFile + "' after " + DOWNLOAD_RETRIES + " retries!");
                         }
                     }
                 }
@@ -995,7 +1015,7 @@ namespace TwitchLeecher.Services.Services
             });
 
             setProgress(100);
-
+            log(Environment.NewLine + Environment.NewLine + "Muted file recovery rate : " + (1 - (double)muteRecoveryFail / (double)muteCount) + "% ( " + (muteCount - muteRecoveryFail) + " / " + muteCount + " )");
             log(Environment.NewLine + Environment.NewLine + "Download of all video chunks complete!");
         }
 
