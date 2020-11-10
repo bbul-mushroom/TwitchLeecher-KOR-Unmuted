@@ -1,4 +1,4 @@
-# Twitch Leecher
+# Twitch Leecher 한글 + 음소거제거 버전
 
 트수들을 위한 트위치 영상 다운로더 Twitch Leecher!
 
@@ -10,7 +10,7 @@
 
 오랜 시간 동안 업데이트가 없다고 해서 죽은 프로젝트가 아닙니다!
 
-프로그램 개발자도 본업이 있습니다. ㅠㅠ
+프로그램 개발자도 본업이 있으며, 트수입니다...
 
 ## 다운로드 및 요구사항
 
@@ -18,7 +18,7 @@
 
 Windows 7 SP1 64 비트 이상의 운영체제가 필요하며, 1.7.X 버전 이후로는 32비트 운영체제에서는 작동하지 않습니다!
 
-[여기서 다운로드](https://github.com/syudal/TwitchLeecher/releases)
+[여기서 다운로드](https://github.com/bbul-mushroom/TwitchLeecher-KOR-Unmuted/releases)
 
 ## 다른 다시보기 영상 다운로더와의 차이점이라면요....?
 
@@ -39,6 +39,7 @@ Windows 7 SP1 64 비트 이상의 운영체제가 필요하며, 1.7.X 버전 이
 - 다운로드 탬플릿 설정가능
 - 믿음직한 프로그래머들
 - (가장중요) 무료
+- (가장중요) 최대한 음소거를 제거하여 파일을 다운로드 합니다!
 
 ## 라이센스
 - [MIT License](https://github.com/Franiac/TwitchLeecher/blob/master/LICENSE)
