@@ -93,7 +93,7 @@
 
                 <StackPanel Grid.Column="1" Margin="0,6,0,0">
                     <TextBlock Style="{StaticResource TlTitleText}" Text="{Binding Title, FallbackValue='Twitch Leecher X.Y'}" />
-                    <TextBlock Style="{StaticResource SubTitleText}" Text="트위치 영상 다운로더" Margin="10,0,0,0" />
+                    <TextBlock Style="{StaticResource SubTitleText}" Text="트위치 영상 다운로더 - 음소거제거" Margin="10,0,0,0" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0" VerticalAlignment="Center">

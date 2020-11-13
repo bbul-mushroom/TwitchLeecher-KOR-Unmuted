@@ -32,6 +32,7 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
@@ -77,40 +78,46 @@
                 <Image Style="{StaticResource Img_Donate}" />
             </Button>
 
-            <TextBlock Grid.Row="8" Text="트위치 리처 한글화 프로젝트" FontWeight="Bold"  Margin="0,15,0,0" />
+            <TextBlock Grid.Row="8" Text="트위치 리처 한글화 및 음소거 제거 프로젝트" FontWeight="Bold"  Margin="0,15,0,0" />
             <TextBlock Grid.Row="9" Margin="15,5,0,0">
             <Hyperlink Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/syudal/TwitchLeecher">
                 https://github.com/syudal/TwitchLeecher
             </Hyperlink>
             </TextBlock>
-
-            <TextBlock Grid.Row="10" Text="개발자 정보" FontWeight="Bold"  Margin="0,15,0,0" />
-            <TextBlock Grid.Row="11" Margin="15,5,0,0">
+            <TextBlock Grid.Row="10" Margin="15,5,0,0">
+            <Hyperlink Command="{Binding OpenLinkCommand}" CommandParameter="https://github.com/bbul-mushroom/TwitchLeecher-KOR-Unmuted">
+                https://github.com/bbul-mushroom/TwitchLeecher-KOR-Unmuted
+            </Hyperlink>
+            </TextBlock>
+            
+            
+            <TextBlock Grid.Row="11" Text="개발자 정보" FontWeight="Bold"  Margin="0,15,0,0" />
+            <TextBlock Grid.Row="12" Margin="15,5,0,0">
             <Hyperlink Command="{Binding OpenLinkCommand}" CommandParameter="http://www.fakesmilerevolution.com">
                 http://www.fakesmilerevolution.com
             </Hyperlink>
             </TextBlock>
-            <TextBlock Grid.Row="12" Margin="15,5,0,0">
+            <TextBlock Grid.Row="13" Margin="15,5,0,0">
             <Hyperlink Command="{Binding OpenLinkCommand}" CommandParameter="http://www.twitch.tv/fakesmilerevolution">
                 http://www.twitch.tv/fakesmilerevolution
             </Hyperlink>
             </TextBlock>
-            <TextBlock Grid.Row="13" Margin="15,5,0,0">
+            <TextBlock Grid.Row="14" Margin="15,5,0,0">
             <Hyperlink Command="{Binding OpenLinkCommand}" CommandParameter="http://plus.google.com/+fakesmilerevolution">
                 http://plus.google.com/+fakesmilerevolution
             </Hyperlink>
             </TextBlock>
-            <TextBlock Grid.Row="14" Margin="15,5,0,0">
+            <TextBlock Grid.Row="15" Margin="15,5,0,0">
             <Hyperlink Command="{Binding OpenLinkCommand}" CommandParameter="http://www.youtube.com/fakesmilerevolution">
                 http://www.youtube.com/fakesmilerevolution
             </Hyperlink>
             </TextBlock>
-            <TextBlock Grid.Row="15" Margin="15,5,0,0">
+            <TextBlock Grid.Row="16" Margin="15,5,0,0">
             <Hyperlink Command="{Binding OpenLinkCommand}" CommandParameter="http://www.facebook.com/fakesmilerevolution">
                 http://www.facebook.com/fakesmilerevolution
             </Hyperlink>
             </TextBlock>
-            <TextBlock Grid.Row="16" Margin="15,5,0,0">
+            <TextBlock Grid.Row="17" Margin="15,5,0,0">
             <Hyperlink Command="{Binding OpenLinkCommand}" CommandParameter="http://www.soundcloud.com/fakesmilerevolution">
                 http://www.soundcloud.com/fakesmilerevolution
             </Hyperlink>
